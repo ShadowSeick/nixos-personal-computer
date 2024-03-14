@@ -71,7 +71,22 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  
+  # Disable power profiles
+  services.power-profiles-daemon.enable = false;
 
+  # Run thermald
+  services.thermald.enable = true;
+
+  # Set tlp config
+  services.tlp = {
+    settings = {
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
+  };
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
