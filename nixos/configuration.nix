@@ -87,9 +87,21 @@
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
   };
+
   # Enable sound with pipewire.
   sound.enable = true;
+  
+  # Bluetooth
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+      Experimental = true;
+    };
+  };
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
