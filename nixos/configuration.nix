@@ -71,7 +71,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
+
   # Disable power profiles
   services.power-profiles-daemon.enable = false;
 
@@ -144,7 +144,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    alacritty
     sl
     google-chrome
     vscode
@@ -156,6 +155,8 @@
     docker
     jetbrains.datagrip
     tlp
+    microcodeAmd
+    oh-my-posh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
