@@ -125,15 +125,17 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Define zsh shell
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shadowseick = {
     isNormalUser = true;
     description = "Shadow";
     extraGroups = [ "networkmanager" "wheel" "docker"];
-    packages = with pkgs; [
-    #  firefox
-    #  thunderbird
-    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages

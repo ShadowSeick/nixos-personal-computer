@@ -83,6 +83,59 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      update = "sudo nixos-rebuild switch --flake ~/mysystem/#myNixos";
+    };
+    history.size = 10000;
+    history.path = "${config.xdg.dataHome}/zsh/history";
+
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.8.0";
+          sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+        };
+      }
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.4.0";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        name = "enhancd";
+        file = "init.sh";
+        src = pkgs.fetchFromGitHub {
+          owner = "b4b4r07";
+          repo = "enhancd";
+          rev = "v2.2.1";
+          sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+        };
+      }
+    ];
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ ];
+      theme = "af-magic";
+    };
+  };
+
   programs.git = {
     enable = true;
     userName = "ShadowSeick";

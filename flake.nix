@@ -45,14 +45,31 @@
              nodejs_21
              nest-cli
            ];
+           shellHook = ''
+             $SHELL
+           '';
          };
     devShells.x86_64-linux.python =
       pkgs.mkShell
         {
            nativeBuildInputs = with pkgs; [
-             python38
+             python38Full
+             libffi
+             gcc
+             pkg-config
+             zlib
+             libjpeg
+             openjpeg
+             librsvg
+             libtiff
+             lcms2
+             freetype
+             harfbuzz
              postgresql_12
            ];
+           shellHook = ''
+             $SHELL
+           '';  
         };
 
   };
