@@ -158,7 +158,7 @@
     jetbrains.datagrip
     tlp
     microcodeAmd
-    oh-my-posh
+    pciutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

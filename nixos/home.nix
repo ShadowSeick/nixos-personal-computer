@@ -132,7 +132,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ ];
-      theme = "af-magic";
+      theme = "robbyrussell";
     };
   };
 
