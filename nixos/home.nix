@@ -159,15 +159,11 @@
     };
 
     plugins = {
-      lightline.enable = true;
-
       telescope.enable = true;
 
       oil.enable = true;
 
       treesitter.enable = true;
-
-      luasnip.enable = true;
 
       lsp = {
         enable = true;
@@ -222,8 +218,8 @@
       };
     };
 
-    # Enable gruvbox
-    colorschemes.dracula.enable = true;
+
+    colorschemes.gruvbox.enable = true;
 
     extraPlugins = with pkgs.vimPlugins; [
       {
@@ -231,6 +227,11 @@
         config = "lua require(\"Comment\").setup()";
       }
       vim-nix
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
+      plenary-nvim
+      gruvbox-material
+      mini-nvim
     ];
 
   };

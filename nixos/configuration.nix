@@ -93,6 +93,13 @@
     };
   };
 
+  # Ignore suspend when laptop closed with external power and docked
+  services.logind.lidSwitchDocked = "ignore";
+
+  # Suspend laptop as usual for any other case
+  services.logind.lidSwitch = "suspend";
+
+
   # Enable sound with pipewire.
   sound.enable = true;
   
