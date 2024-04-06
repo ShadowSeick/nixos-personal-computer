@@ -57,6 +57,23 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Options for enabling hyprland
+  security.polkit.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+  ];
+
   # Enable docker
   virtualisation.docker.enable = true;
 
@@ -98,7 +115,6 @@
 
   # Suspend laptop as usual for any other case
   services.logind.lidSwitch = "suspend";
-
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -166,6 +182,10 @@
     tlp
     microcodeAmd
     pciutils
+    waybar
+    swww
+    postman
+    firefox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

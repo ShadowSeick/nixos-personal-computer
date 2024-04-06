@@ -11,6 +11,11 @@
       url = "github:nix-community/nixvim";  
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -71,6 +76,17 @@
              $SHELL
            '';  
         };
+    devShells.x86_64-linux.go =
+      pkgs.mkShell
+        {
+          nativeBuildInputs = with pkgs; [
+            go
+          ];
+          shellHook = ''
+            $SHELL
+          '';
+        };
+
 
   };
 }
