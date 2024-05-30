@@ -81,12 +81,35 @@
         {
           nativeBuildInputs = with pkgs; [
             go
+            gotools
+            gopls
+            go-outline
+            gopkgs
+            gocode-gomod
+            godef
+            golint
+            air
+            google-cloud-sdk
           ];
           shellHook = ''
-            $SHELL
+          $SHELL
           '';
         };
-
-
+    devShells.x86_64-linux.cuda =
+      pkgs.mkShell
+        {
+           nativeBuildInputs = with pkgs; [
+             git gitRepo gnupg autoconf curl
+             procps gnumake util-linux m4 gperf unzip
+             cudatoolkit linuxPackages.nvidia_x11
+             libGLU libGL
+             xorg.libXi xorg.libXmu freeglut
+             xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+             ncurses5 stdenv.cc binutils
+           ];
+           shellHook = ''
+             $SHELL
+           '';
+        };
   };
 }

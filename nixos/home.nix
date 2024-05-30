@@ -47,6 +47,9 @@
     (pkgs.writeShellScriptBin "go" ''
       nix develop ~/mysystem/#go
     '')
+    (pkgs.writeShellScriptBin "cuda" ''
+      nix develop ~/mysystem/#cuda
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -129,6 +132,7 @@
     shellAliases = {
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake ~/mysystem/#myNixos";
+      upgrade = "sudo nixos-rebuild switch --upgrade ~/mysystem/#myNixos";
     };
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
