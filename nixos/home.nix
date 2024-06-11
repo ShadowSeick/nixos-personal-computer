@@ -86,47 +86,13 @@
     EDITOR = "nvim";
   };
 
-  wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
-    enable = true;
-    # The hyprland package to use
-    package = pkgs.hyprland;
-    # Whether to enable XWayland
-    xwayland.enable = true;
-
-    plugins = [
-      inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
-    ];
-
-    settings = {
-      "plugin:borders-plus-plus" = {
-        add_borders = 1; # 0 - 9
-
-        # you can add up to 9 borders
-        "col.border_1" = "rgb(ffffff)";
-        "col.border_2" = "rgb(2222ff)";
-
-        # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 10;
-        border_size_2 = -1;
-
-        # makes outer edges match rounding of the parent. Turn on / off to better understand. Default = on.
-        natural_rounding = "yes";
-      };
-    };
-
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
-  };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     shellAliases = {
@@ -193,7 +159,7 @@
 
     globals.mapleader = " "; 
 
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       shiftwidth = 2;
@@ -225,36 +191,12 @@
         };
       };
 
-      nvim-cmp = {
+      cmp = {
         enable = true;
         autoEnableSources = true;
-        sources = [
-          {name = "nvim_lsp";}
-          {name = "path";}
-          {name = "buffer";}
-          {name = "luasnip";}
-        ];
 
-        mapping = {
+        settings.mapping = {
           "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<Tab>" = {
-            action = ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip.expandable() then
-                  luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif check_backspace() then
-                  fallback()
-                else
-                  fallback()
-                end
-              end
-            '';
-            modes = [ "i" "s" ];
-          };
         };
       };
     };

@@ -51,16 +51,26 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm.enable = true;
+    };
+    desktopManager = {
+      gnome.enable = true;
+    };
+    xkb = {
+      layout = "us";
+    };
+  };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Options for enabling hyprland
   security.polkit.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+
+  services.gnome = {
+    core-os-services.enable = true;
+    core-shell.enable = true;
+    core-utilities.enable = true;
+  };
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -77,14 +87,8 @@
   # Enable docker
   virtualisation.docker.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "es";
-    variant = "cat";
-  };
-
-  # Configure console keymap
-  console.keyMap = "es";
+  # Configure console US keymap
+  console.keyMap = "us";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -169,7 +173,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    sl
     google-chrome
     vscode
     home-manager
@@ -179,15 +182,25 @@
     unzip
     docker
     jetbrains.datagrip
-    tlp
     microcodeAmd
     pciutils
-    waybar
-    swww
     postman
-    firefox
-    go
+    gnome-network-displays
   ];
+
+  xdg.portal.enable = true;
+
+  xdg.portal.xdgOpenUsePortal = true;
+  xdg.portal.extraPortals = [
+    #pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.xdg-desktop-portal-wlr
+  ];
+
+  networking.firewall.trustedInterfaces = [ "p2p-wl+" ];
+
+  networking.firewall.allowedTCPPorts = [ 7236 7250 ];
+  networking.firewall.allowedUDPPorts = [ 7236 5353 ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

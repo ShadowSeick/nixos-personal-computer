@@ -8,13 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";  
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -47,8 +42,9 @@
       pkgs.mkShell
         {
            nativeBuildInputs = with pkgs; [
-             nodejs_21
+             nodejs_22
              nest-cli
+             postgresql_15
            ];
            shellHook = ''
              $SHELL
@@ -74,7 +70,7 @@
            ];
            shellHook = ''
              $SHELL
-           '';  
+           '';
         };
     devShells.x86_64-linux.go =
       pkgs.mkShell
