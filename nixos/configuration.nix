@@ -186,6 +186,7 @@
     pciutils
     postman
     gnome-network-displays
+    spotify
   ];
 
   xdg.portal.enable = true;
