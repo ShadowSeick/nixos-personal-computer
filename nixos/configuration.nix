@@ -120,9 +120,6 @@
   # Suspend laptop as usual for any other case
   services.logind.lidSwitch = "suspend";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  
   # Bluetooth
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
@@ -187,6 +184,7 @@
     postman
     gnome-network-displays
     spotify
+    calibre
   ];
 
   xdg.portal.enable = true;
