@@ -86,6 +86,7 @@
             golint
             air
             google-cloud-sdk
+            delve
           ];
           shellHook = ''
           $SHELL

@@ -210,7 +210,12 @@
   # };
 
   # List services that you want to enable:
-
+  # Asusctl
+  services.supergfxd.enable = true;
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
