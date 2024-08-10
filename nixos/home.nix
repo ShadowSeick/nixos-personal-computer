@@ -157,7 +157,7 @@
   programs.nixvim = {
     enable = true;
 
-    globals.mapleader = " "; 
+    globals.mapleader = " ";
 
     opts = {
       number = true;
@@ -186,8 +186,8 @@
             enable = true;
             installCargo = true;
             installRustc = false;
-          }; 
-    
+          };
+
         };
       };
 

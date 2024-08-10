@@ -121,7 +121,6 @@
   services.logind.lidSwitch = "suspend";
 
   # Bluetooth
-  hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
@@ -131,6 +130,8 @@
     };
   };
 
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false; # Disable PulseAudio
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -144,6 +145,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable touchpad support (enabled default in most desktopManager).
