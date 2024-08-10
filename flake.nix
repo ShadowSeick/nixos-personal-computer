@@ -11,9 +11,13 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    templ = {
+      url = "github:a-h/templ";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, templ, ... }@inputs:
   let
     system = "x86_64-linux";
 
@@ -21,9 +25,10 @@
       inherit system;
 
       config = {
-	allowUnfree = true;
+	      allowUnfree = true;
       };
     };
+    templ = system: inputs.templ.packages.${system}.templ;
 
   in
   {
@@ -87,9 +92,13 @@
             air
             google-cloud-sdk
             delve
+            (templ system)
+            nodejs
+            (nodePackages.tailwindcss.override { nodejs = nodejs; })
           ];
           shellHook = ''
-          $SHELL
+            export PATH=$PATH:$(pwd)/node_modules/.bin
+            $SHELL
           '';
         };
     devShells.x86_64-linux.cuda =

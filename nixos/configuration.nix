@@ -158,7 +158,7 @@
   users.users.shadowseick = {
     isNormalUser = true;
     description = "Shadow";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio"];
     packages = with pkgs; [ ];
   };
 
@@ -185,6 +185,7 @@
     gnome-network-displays
     spotify
     calibre
+    asusctl
   ];
 
   xdg.portal.enable = true;
