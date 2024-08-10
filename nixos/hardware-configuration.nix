@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "snd_hda_intel" "snd_sof_amd_rembrandt" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =

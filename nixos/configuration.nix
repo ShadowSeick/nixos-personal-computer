@@ -130,6 +130,9 @@
     };
   };
 
+  # Disable power management for audio
+  powerManagement.powertop.enable = false;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false; # Disable PulseAudio
   security.rtkit.enable = true;
@@ -145,6 +148,9 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  # Enable firmware for common audio devices if needed
+  hardware.enableAllFirmware = true;
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -188,6 +194,10 @@
     spotify
     calibre
     asusctl
+    alsa-utils
+    pavucontrol
+    pulseaudio
+    pulsemixer
   ];
 
   xdg.portal.enable = true;
