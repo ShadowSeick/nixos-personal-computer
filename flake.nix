@@ -95,6 +95,7 @@
             (templ system)
             nodejs
             (nodePackages.tailwindcss.override { nodejs = nodejs; })
+            go-migrate
           ];
           shellHook = ''
             export PATH=$PATH:$(pwd)/node_modules/.bin
