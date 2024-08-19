@@ -81,9 +81,8 @@
       pkgs.mkShell
         {
           nativeBuildInputs = with pkgs; [
-            go
+           go
             gotools
-            gopls
             go-outline
             gopkgs
             gocode-gomod
