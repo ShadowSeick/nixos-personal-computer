@@ -80,14 +80,9 @@
     devShells.x86_64-linux.go =
       pkgs.mkShell
         {
+          hardeningDisable = [ "fortify" ];
           nativeBuildInputs = with pkgs; [
-           go
-            gotools
-            go-outline
-            gopkgs
-            gocode-gomod
-            godef
-            golint
+            go
             air
             google-cloud-sdk
             delve

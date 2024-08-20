@@ -198,6 +198,7 @@
     pavucontrol
     pulseaudio
     pulsemixer
+    dotnet-sdk
   ];
 
   xdg.portal.enable = true;
