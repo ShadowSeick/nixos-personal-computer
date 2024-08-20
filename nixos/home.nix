@@ -154,43 +154,39 @@
     };
   };
 
-  programs.nixvim = {
+  programs.nixvim =
+  let
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+  in
+  {
     enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
 
-    globals.mapleader = " ";
+    globals = {
+      mapleader = " ";
+      maplocalleader = " ";
+    };
 
     opts = {
       number = true;
       relativenumber = true;
+      clipboard = "unnamedplus";
+      signcolumn = "yes";
+
+      tabstop = 4;
       shiftwidth = 2;
+      updatetime = 300;
+      termguicolors = true;
+      mouse = "a";
     };
 
     plugins = {
       telescope.enable = true;
-
       oil.enable = true;
-
-      treesitter.enable = true;
-
-      lsp = {
-        enable = true;
-
-        servers = {
-          tsserver.enable = true;
-
-          lua-ls = {
-            enable = true;
-            settings.telemetry.enable = false;
-          };
-          rust-analyzer = {
-            enable = true;
-            installCargo = true;
-            installRustc = false;
-          };
-
-        };
-      };
-
+      comment.enable = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -199,24 +195,41 @@
           "<CR>" = "cmp.mapping.confirm({ select = true })";
         };
       };
+      harpoon.enable = true;
+      friendly-snippets.enable = true;
+      nvim-snippets.enable = true;
+      luasnip.enable = true;
+      treesitter.enable = true;
     };
-
-
     colorschemes.gruvbox.enable = true;
 
     extraPlugins = with pkgs.vimPlugins; [
-      {
+     {
         plugin = comment-nvim;
         config = "lua require(\"Comment\").setup()";
       }
+      {
+        plugin = nvim-cmp;
+        config = toLuaFile ./nvim/plugin/cmp.lua;
+      }
       vim-nix
-      nvim-lspconfig
       nvim-treesitter.withAllGrammars
       plenary-nvim
       gruvbox-material
       mini-nvim
+      neodev-nvim
+      friendly-snippets
+      lualine-nvim
+      nvim-web-devicons
+      vim-nix
+      nvim-lspconfig
+      plenary-nvim
     ];
 
+    extraPackages = with pkgs; [
+      xclip
+      wl-clipboard
+    ];
   };
 
 }
