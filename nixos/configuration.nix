@@ -199,6 +199,7 @@
     pulseaudio
     pulsemixer
     dotnet-sdk
+    prusa-slicer
   ];
 
   xdg.portal.enable = true;
