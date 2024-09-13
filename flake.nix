@@ -86,10 +86,15 @@
             air
             google-cloud-sdk
             delve
+            gopls
             (templ system)
             nodejs
             (nodePackages.tailwindcss.override { nodejs = nodejs; })
             go-migrate
+            go-outline
+            gopkgs
+            go-tools
+            delve
           ];
           shellHook = ''
             export PATH=$PATH:$(pwd)/node_modules/.bin
