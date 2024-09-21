@@ -66,6 +66,9 @@
 
   security.polkit.enable = true;
 
+  # And ensure gnome-settings-daemon udev rules are enabled 
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
   services.gnome = {
     core-os-services.enable = true;
     core-shell.enable = true;
@@ -138,11 +141,13 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
+    wireplumber.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -193,13 +198,21 @@
     gnome-network-displays
     spotify
     calibre
-    asusctl
     alsa-utils
     pavucontrol
     pulseaudio
     pulsemixer
     dotnet-sdk
     prusa-slicer
+
+     #libraries
+    ntfs3g
+    linuxHeaders
+    linux-firmware
+    fakeroot
+    alsa-utils
+    alsa-firmware
+    gjs
   ];
 
   xdg.portal.enable = true;
@@ -224,13 +237,6 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-  # Asusctl
-  services.supergfxd.enable = true;
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
