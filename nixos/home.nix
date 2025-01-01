@@ -40,16 +40,19 @@
     # '')
     pkgs.buf
     (pkgs.writeShellScriptBin "node" ''
-       nix develop ~/mysystem/#node
+       nix develop ~/nixos-personal-computer/#node
     '')
     (pkgs.writeShellScriptBin "python38" ''
-       nix develop ~/mysystem/#python
+       nix develop ~/nixos-personal-computer/#python
     '')
     (pkgs.writeShellScriptBin "go" ''
-      nix develop ~/mysystem/#go
+      nix develop ~/nixos-personal-computer/#go
     '')
     (pkgs.writeShellScriptBin "cuda" ''
-      nix develop ~/mysystem/#cuda
+      nix develop ~/nixos-personal-computer/#cuda
+    '')
+    (pkgs.writeShellScriptBin "odin" ''
+      nix develop ~/nixos-personal-computer/#odin
     '')
   ];
 
@@ -98,8 +101,8 @@
 
     shellAliases = {
       ll = "ls -l";
-      update-system = "sudo nixos-rebuild switch --flake ~/mysystem/#myNixos";
-      update-packages = "sudo nix flake update ~/mysystem";
+      update-system = "sudo nixos-rebuild switch --flake ~/nixos-personal-computer/#myNixos";
+      update-packages = "sudo nix flake update ~/nixos-personal-computer";
     };
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";

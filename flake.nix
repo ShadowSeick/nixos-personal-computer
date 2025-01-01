@@ -105,8 +105,8 @@
       pkgs.mkShell
         {
            nativeBuildInputs = with pkgs; [
-             git gitRepo gnupg autoconf curl
-             procps gnumake util-linux m4 gperf unzip
+             gnupg autoconf
+             procps gnumake util-linux m4 gperf
              cudatoolkit linuxPackages.nvidia_x11
              libGLU libGL
              xorg.libXi xorg.libXmu freeglut
@@ -116,6 +116,19 @@
            shellHook = ''
              $SHELL
            '';
+        };
+    devShells.x86_64-linux.odin =
+      pkgs.mkShell
+        {
+          nativeBuildInputs = with pkgs; [
+            gcc
+            make
+            odin
+          ];
+          shellHook = ''
+            echo "Odin development environment activated"
+            $SHELL
+          '';
         };
   };
 }
