@@ -14,7 +14,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      shadowseick = import ./home.nix;
+      seick = import ./home.nix;
     };
   };
 
@@ -51,29 +51,11 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm.enable = true;
-    };
-    desktopManager = {
-      gnome.enable = true;
-    };
-    xkb = {
-      layout = "us";
-    };
-  };
+  services.xserver.enable = true;
 
-  security.polkit.enable = true;
-
-  # And ensure gnome-settings-daemon udev rules are enabled 
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-
-  services.gnome = {
-    core-os-services.enable = true;
-    core-shell.enable = true;
-    core-utilities.enable = true;
-  };
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -90,11 +72,30 @@
   # Enable docker
   virtualisation.docker.enable = true;
 
-  # Configure console US keymap
-  console.keyMap = "us";
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
 
   # Disable power profiles
   services.power-profiles-daemon.enable = false;
@@ -136,24 +137,6 @@
   # Disable power management for audio
   powerManagement.powertop.enable = false;
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false; # Disable PulseAudio
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-    wireplumber.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   # Enable firmware for common audio devices if needed
   hardware.enableAllFirmware = true;
 
@@ -168,7 +151,7 @@
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.shadowseick = {
+  users.users.seick = {
     isNormalUser = true;
     description = "Shadow";
     extraGroups = [ "networkmanager" "wheel" "docker" "audio"];
@@ -204,8 +187,6 @@
     pulsemixer
     dotnet-sdk
     prusa-slicer
-    wine
-    winetricks
 
      #libraries
     ntfs3g
@@ -257,6 +238,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }
