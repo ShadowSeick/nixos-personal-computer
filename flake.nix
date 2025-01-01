@@ -52,7 +52,7 @@
              postgresql_15
            ];
            shellHook = ''
-             $SHELL
+	     echo "Node environment running"
            '';
          };
     devShells.x86_64-linux.python =
@@ -74,7 +74,7 @@
              postgresql_12
            ];
            shellHook = ''
-             $SHELL
+             echo "Python environment running"
            '';
         };
     devShells.x86_64-linux.go =
@@ -98,7 +98,7 @@
           ];
           shellHook = ''
             export PATH=$PATH:$(pwd)/node_modules/.bin
-            $SHELL
+            echo "Go environment running"
           '';
         };
     devShells.x86_64-linux.cuda =
@@ -122,12 +122,10 @@
         {
           nativeBuildInputs = with pkgs; [
             gcc
-            make
             odin
           ];
           shellHook = ''
-            echo "Odin development environment activated"
-            $SHELL
+            echo "Odin environment running"
           '';
         };
   };

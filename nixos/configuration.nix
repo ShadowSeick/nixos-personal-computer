@@ -57,6 +57,8 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # environment.etc."background.jpg".source = "/home/seick/nixos-personal-computer/images/0.png";
+
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
