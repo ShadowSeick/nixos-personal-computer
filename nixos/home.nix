@@ -102,7 +102,7 @@
     shellAliases = {
       ll = "ls -l";
       update-system = "sudo nixos-rebuild switch --flake ~/nixos-personal-computer/#myNixos";
-      update-packages = "sudo nix flake update ~/nixos-personal-computer";
+      update-packages = "sudo nix flake update --flake ~/nixos-personal-computer";
     };
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
