@@ -147,10 +147,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define zsh shell
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
-  programs.zsh.enable = true;
+  # Define bash shell
+  users.defaultUserShell = pkgs.bash;
+  environment.shells = with pkgs; [ bash ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.seick = {
