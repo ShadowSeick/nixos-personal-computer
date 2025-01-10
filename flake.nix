@@ -145,5 +145,18 @@
             echo "Odin environment running"
           '';
         };
+    devShells.x86_64-linux.love =
+      pkgs.mkShell
+        {
+	  nativeBuildInputs = with pkgs; [
+	    love
+	    lua
+	    lua-language-server
+	  ];
+
+	  shellHook = ''
+	    echo "Enjoy making games, I know you can do it"
+	  '';
+	};
   };
 }
