@@ -54,6 +54,9 @@
     (pkgs.writeShellScriptBin "odin" ''
       nix develop ~/nixos-personal-computer/#odin
     '')
+    (pkgs.writeShellScriptBin "love" ''
+      nix develop ~/nixos-personal-computer/#love
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
