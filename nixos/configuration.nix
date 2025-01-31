@@ -52,10 +52,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # environment.etc."background.jpg".source = "/home/seick/nixos-personal-computer/images/0.png";
 
@@ -179,7 +178,6 @@
     microcodeAmd
     pciutils
     postman
-    gnome-network-displays
     spotify
     calibre
     alsa-utils
@@ -188,6 +186,7 @@
     pulsemixer
     dotnet-sdk
     prusa-slicer
+    ghostty
 
      #libraries
     ntfs3g
@@ -206,9 +205,8 @@
 
   xdg.portal.xdgOpenUsePortal = true;
   xdg.portal.extraPortals = [
-    #pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-gnome
-    pkgs.xdg-desktop-portal-wlr
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-kde
   ];
 
   networking.firewall.trustedInterfaces = [ "p2p-wl+" ];
