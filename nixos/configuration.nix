@@ -53,8 +53,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # environment.etc."background.jpg".source = "/home/seick/nixos-personal-computer/images/0.png";
 
