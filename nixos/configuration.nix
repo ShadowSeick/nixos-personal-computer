@@ -50,12 +50,9 @@
     LC_TIME = "es_ES.UTF-8";
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
-  
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # environment.etc."background.jpg".source = "/home/seick/nixos-personal-computer/images/0.png";
 
@@ -187,7 +184,6 @@
     pulsemixer
     dotnet-sdk
     prusa-slicer
-    ghostty
 
      #libraries
     ntfs3g
