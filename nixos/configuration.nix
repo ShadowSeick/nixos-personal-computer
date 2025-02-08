@@ -50,7 +50,9 @@
     LC_TIME = "es_ES.UTF-8";
   };
 
+  # Enable the X11 windowing system
   services.xserver.enable = true;
+  # Enable sddm and plasma5 kde
   services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
